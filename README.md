@@ -1,9 +1,19 @@
 # applicant-service
 
+## REPORTS
+
 **[REPORTS HERE](https://github.com/SaviorD7/applicant-service/tree/main/reports)** 
 
+## Список исполнителей
 
-## Задачи
+| Full name                    |  Part         | Contact data       |
+| -----------------------------|:-------------:| ------------------:|
+| Фомичев Дмитрий Алексеевич   | ML            | savior.7@yandex.ru |
+| Коробейников Роман Андреевич | ML, tester    | romka.kra@mail.ru  |
+| Паушев Дмитрий Александрович | Frontend      | mpaushev2@mail.ru  |
+| Вдовиченко Валерия           | ML            |    ...             |
+
+## Tasks
 
 1. Произвести обработку данных, полученных от приёмной комиссии
 2. Исследователь модели машинного обучения для анализа данных приемных комиссии:
