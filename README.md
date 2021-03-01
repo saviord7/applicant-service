@@ -1,4 +1,10 @@
 # applicant-service
+Сервис рекомендаций по выбору направления обучения для студентов
+
+Ссылка на Google Doc (не содержит ничего похожего на материалы, не подлежащие разглашению): 
+
+https://drive.google.com/drive/folders/1XUFS06_pI0AziRaGBM-FpxMbMnJH-6Wz
+
 
 ## REPORTS
 
