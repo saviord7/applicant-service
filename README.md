@@ -17,7 +17,7 @@ https://drive.google.com/drive/folders/1XUFS06_pI0AziRaGBM-FpxMbMnJH-6Wz
 | Фомичев Дмитрий Алексеевич   | ML            | savior.7@yandex.ru |
 | Коробейников Роман Андреевич | ML, tester    | romka.kra@mail.ru  |
 | Паушев Дмитрий Александрович | Frontend      | mpaushev2@mail.ru  |
-| Вдовиченко Валерия           | ML            |    ...             |
+| Вдовиченко Валерия           | ML, tester    | lervd@mail.ru      |
 
 ## Tasks
 
