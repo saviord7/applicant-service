@@ -8,7 +8,7 @@
 </head>
 <body  class="container">
   <h2 class="text-center">Анкета поступающего</h2>
-  <form class="row g-3" method="POST" action="">
+  <form id=form1 class="row g-3" method="POST" action="">
     <!-- <div class="form-text">We'll never share</div> -->
     <h4>Личные данные</h4>
 
@@ -88,7 +88,74 @@
       <input  id="EssayGrade" type="number" min=0 max=5 value=0 class="form-control col" >
     </div>
 
+    <h4>Баллы ЕГЭ</h4>
+
+    <label class="col-2">1 приоритет</label>
+    <div class="col-7">
+      <select id="Subject1Priority" class="form-select col-5">
+        <option>Английский язык</option>
+        <option>Информатика</option>
+        <option>Математика</option>
+        <option>Обществознание</option>
+        <option>Русский язык</option>
+        <option>Физика</option>
+        <option>Химия</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <input  id="SubjectGrade1Priority" type="number" min=0 max=100 value=0 class="form-control" >
+    </div>
+
+    <label class="col-2">2 приоритет</label>
+    <div class="col-7">
+      <select id="Subject2Priority" class="form-select col-5">
+        <option>Английский язык</option>
+        <option>Информатика</option>
+        <option>Математика</option>
+        <option>Обществознание</option>
+        <option>Русский язык</option>
+        <option>Физика</option>
+        <option>Химия</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <input  id="SubjectGrade2Priority" type="number" min=0 max=100 value=0 class="form-control" >
+    </div>
+    
+    <label class="col-2">3 приоритет</label>
+    <div class="col-7">
+      <select id="Subject3Priority" class="form-select col-5">
+        <option>Английский язык</option>
+        <option>Информатика</option>
+        <option>Математика</option>
+        <option>Обществознание</option>
+        <option>Русский язык</option>
+        <option>Физика</option>
+        <option>Химия</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <input  id="SubjectGrade3Priority" type="number" min=0 max=100 value=0 class="form-control" >
+    </div>
+
+    <div class="col-2">
+      <label for="SummaryGrade"             class="form-label">Общий балл</label>
+    </div>
+    <div class="col-7"></div>
+    <div class="col-2">
+      <input  id="SummaryGrade" type="number" min=0 max=305 value=0 class="form-control col" readonly>
+    </div>
+
     <h4>Прочее</h4>
+
+    <div class="col-3">
+      <label for="StudentPreferences" class="form-label">Поступление в ЛЭТИ приоритетно</label>
+      <select id="StudentPreferences" class="form-select">
+        <option selected>Да</option>
+        <option>Не определился</option>
+        <option>Нет</option>
+      </select>
+    </div>
     <div class="col-3">
       <label for="IsTargetedRecruitment" class="form-label">Рассматривать целевое обучение</label>
       <select id="IsTargetedRecruitment" class="form-select">
@@ -105,19 +172,41 @@
       </select>
     </div>
 
-    <h4>Приоритеты</h4>
-
     <button type="submit" class="btn btn-primary">Отправить</button>
   </form>
 
   <script>
     window.addEventListener('load', Init)
 
+    const GradeElements =  ['SubjectGrade1Priority', 'SubjectGrade2Priority', 'SubjectGrade3Priority']
+
     function Init() {
-      const list = document.querySelectorAll('input')
-      for(let i of list) {
+      let list = document.querySelectorAll('input')
+      for (let i of list) {
         i.name = i.id
       }
+
+      for (let i of GradeElements) {
+        document.getElementById(i).onchange = onGradeChange
+      }
+
+      document.body.onkeydown = function (event) {
+        if(event.key == 'Enter') {
+          event.srcElement.blur()
+          return false
+        }
+      }
+    }
+
+    function onGradeChange() {
+      document.getElementById('SummaryGrade').value = 0
+
+      let sum = 0
+      for (let i of GradeElements) {
+        sum += +document.getElementById(i).value
+      }
+
+      document.getElementById('SummaryGrade').value = +sum
     }
   </script>
 
