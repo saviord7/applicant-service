@@ -4,11 +4,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <title>Анкета абитуриента</title>
+  <title>Анкета поступающего</title>
 </head>
 <body  class="container">
-  <h2 class="text-center">Анкета абитуриента</h2>
-  <form class="row g-3" action="">
+  <h2 class="text-center">Анкета поступающего</h2>
+  <form class="row g-3" method="POST" action="">
     <!-- <div class="form-text">We'll never share</div> -->
     <h4>Личные данные</h4>
 
@@ -28,6 +28,8 @@
       <input  id="BirthDate" type="date" class="form-control col" >
     </div>
 
+    <h4>Образование</h4>
+
     <div class="col-3">
       <label for="EducationLevel" class="form-label">Уровень образования</label>
       <select id="EducationLevel" class="form-select">
@@ -39,22 +41,80 @@
         <option>Другое</option>
       </select>
     </div>
-
-
-
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <div class="col-3">
+      <label for="EducationLevel" class="form-label">Курс (если применимо)</label>
+      <select id="EducationLevel" class="form-select">
+        <option selected>-</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
     </div>
+    <div class="col-3">
+      <label for="ForeignLanguadge" class="form-label">Иностранный Язык</label>
+      <select id="ForeignLanguadge" class="form-select">
+        <option value=0>Другое</option>
+        <option selected>Английский</option>
+        <option>Русский</option>
+        <option>Немецкий</option>
+        <option>Французский</option>
+      </select>
+    </div>
+    
+    <div class="col-12 form-check">
+      <input type="checkbox" class="form-check-input" id="IsHonoursCert">
+      <label class="form-check-label" for="IsHonoursCert">Есть Аттестат С Отличием</label>
+    </div>
+    <div class="col-12 form-check">
+      <input type="checkbox" class="form-check-input" id="IsHonoursDegree">
+      <label class="form-check-label" for="IsHonoursDegree">Есть Диплом С Отличием</label>
+    </div>
+
+    <h4>Достижения</h4>
+
+    <div class="col-3">
+      <label for="AchievementScore"             class="form-label">Балл За Достижения</label>
+      <input  id="AchievementScore" type="number" min=0 max=10 value=0 class="form-control col" >
+    </div>
+    <div class="col-3">
+      <label for="OlympicsScore"             class="form-label">Балл За Олимпиады и Конкурсы</label>
+      <input  id="OlympicsScore" type="number" min=0 max=10 value=0 class="form-control col" >
+    </div>
+    <div class="col-3">
+      <label for="EssayGrade"             class="form-label">Оценка За Сочинение </label>
+      <input  id="EssayGrade" type="number" min=0 max=5 value=0 class="form-control col" >
+    </div>
+
+    <h4>Прочее</h4>
+    <div class="col-3">
+      <label for="IsTargetedRecruitment" class="form-label">Рассматривать целевое обучение</label>
+      <select id="IsTargetedRecruitment" class="form-select">
+        <option selected>Нет</option>
+        <option>Да</option>
+      </select>
+    </div>
+    <div class="col-3">
+      <label for="StudentResidenceType" class="form-label">Общежитие</label>
+      <select id="StudentResidenceType" class="form-select">
+        <option selected>Не требуется</option>
+        <option>Только регистрация</option>
+        <option>Требуется</option>
+      </select>
+    </div>
+
+    <h4>Приоритеты</h4>
+
     <button type="submit" class="btn btn-primary">Отправить</button>
   </form>
 
   <script>
-    document.onload = Init
+    window.addEventListener('load', Init)
 
     function Init() {
       const list = document.querySelectorAll('input')
-      console.log(list)
       for(let i of list) {
         i.name = i.id
       }
