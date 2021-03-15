@@ -15,10 +15,10 @@ https://drive.google.com/drive/folders/188LKHstFjEy3dv2bIIh_66BzJOwtHGiZ?usp=sha
 
 | Full name                    |  Part         | Contact data       |
 | -----------------------------|:-------------:| ------------------:|
-| Фомичев Дмитрий Алексеевич   | ML            | savior.7@yandex.ru |
-| Коробейников Роман Андреевич | ML, tester    | romka.kra@mail.ru  |
+| Фомичев Дмитрий Алексеевич   | PM, ML        | savior.7@yandex.ru |
+| Коробейников Роман Андреевич | DS, tester    | romka.kra@mail.ru  |
 | Паушев Дмитрий Александрович | Frontend      | mpaushev2@mail.ru  |
-| Вдовиченко Валерия           | ML, tester    | lervd@mail.ru      |
+| Вдовиченко Валерия           | DE            | lervd@mail.ru      |
 
 ## Tasks
 
