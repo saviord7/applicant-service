@@ -1,10 +1,11 @@
 # applicant-service
 Сервис рекомендаций по выбору направления обучения для студентов
 
-Ссылка на Google Doc (не содержит ничего похожего на материалы, не подлежащие разглашению): 
-
+## Ссылки
+* Ссылка на Google Doc с методическими материалами (не содержит ничего похожего на материалы, не подлежащие разглашению): 
 https://drive.google.com/drive/folders/1XUFS06_pI0AziRaGBM-FpxMbMnJH-6Wz
-
+* Ссылка на папку с рабочими материалами (доступ по запросу):
+https://drive.google.com/drive/folders/188LKHstFjEy3dv2bIIh_66BzJOwtHGiZ?usp=sharing
 
 ## REPORTS
 
@@ -14,10 +15,10 @@ https://drive.google.com/drive/folders/1XUFS06_pI0AziRaGBM-FpxMbMnJH-6Wz
 
 | Full name                    |  Part         | Contact data       |
 | -----------------------------|:-------------:| ------------------:|
-| Фомичев Дмитрий Алексеевич   | ML            | savior.7@yandex.ru |
-| Коробейников Роман Андреевич | ML, tester    | romka.kra@mail.ru  |
+| Фомичев Дмитрий Алексеевич   | PM, ML        | savior.7@yandex.ru |
+| Коробейников Роман Андреевич | DS, tester    | romka.kra@mail.ru  |
 | Паушев Дмитрий Александрович | Frontend      | mpaushev2@mail.ru  |
-| Вдовиченко Валерия           | ML, tester    | lervd@mail.ru      |
+| Вдовиченко Валерия           | DE            | lervd@mail.ru      |
 
 ## Tasks
 
