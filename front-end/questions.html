@@ -16,7 +16,7 @@
 </head>
 <body  class="container">
   <h2 class="text-center">Анкета поступающего</h2>
-  <form id=form1 class="row g-3" method="POST" action="">
+  <form id=form1 class="row g-3" method="POST">
     <!-- <div class="form-text">We'll never share</div> -->
     <h4>Личные данные</h4>
 
@@ -39,8 +39,8 @@
     <h4>Образование</h4>
 
     <div class="col-3">
-      <label for="EducationLevel" class="form-label">Уровень образования</label>
-      <select id="EducationLevel" class="form-select">
+      <label for="УРОВЕНЬ_ДИПЛОМА" class="form-label">Уровень образования</label>
+      <select id="УРОВЕНЬ_ДИПЛОМА" class="form-select">
         <option>Нет</option>
         <option selected>Среднее</option>
         <option>Среднее профессиональное</option>
@@ -73,34 +73,34 @@
     </div>
     
     <div class="col-12 form-check">
-      <input type="checkbox" class="form-check-input" id="IsHonoursCert">
-      <label class="form-check-label" for="IsHonoursCert">Есть Аттестат С Отличием</label>
+      <input type="checkbox" class="form-check-input" id="ЕСТЬ_АТТЕСТАТ_С_ОТЛИЧИЕМ">
+      <label class="form-check-label" for="ЕСТЬ_АТТЕСТАТ_С_ОТЛИЧИЕМ">Есть Аттестат С Отличием</label>
     </div>
     <div class="col-12 form-check">
-      <input type="checkbox" class="form-check-input" id="IsHonoursDegree">
-      <label class="form-check-label" for="IsHonoursDegree">Есть Диплом С Отличием</label>
+      <input type="checkbox" class="form-check-input" id="ЕСТЬ_ДИПЛОМ_С_ОТЛИЧИЕМ">
+      <label class="form-check-label" for="ЕСТЬ_ДИПЛОМ_С_ОТЛИЧИЕМ">Есть Диплом С Отличием</label>
     </div>
 
     <h4>Достижения</h4>
 
     <div class="col-3">
-      <label for="AchievementScore"             class="form-label">Балл За Достижения</label>
-      <input  id="AchievementScore" type="number" min=0 max=10 value=0 class="form-control col" >
+      <label for="БАЛЛ_ЗА_ДОСТИЖЕНИЯ"             class="form-label">Балл За Достижения</label>
+      <input  id="БАЛЛ_ЗА_ДОСТИЖЕНИЯ" type="number" min=0 max=10 value=0 class="form-control col" >
     </div>
     <div class="col-3">
-      <label for="OlympicsScore"             class="form-label">Балл За Олимпиады и Конкурсы</label>
-      <input  id="OlympicsScore" type="number" min=0 max=10 value=0 class="form-control col" >
+      <label for="БАЛЛ_ОЛИМПИАДЫ_И_КОНКУРСЫ"             class="form-label">Балл За Олимпиады и Конкурсы</label>
+      <input  id="БАЛЛ_ОЛИМПИАДЫ_И_КОНКУРСЫ" type="number" min=0 max=10 value=0 class="form-control col" >
     </div>
     <div class="col-3">
-      <label for="EssayGrade"             class="form-label">Оценка За Сочинение </label>
-      <input  id="EssayGrade" type="number" min=0 max=5 value=0 class="form-control col" >
+      <label for="ОЦЕНКА_ЗА_СОЧИНЕНИЕ"             class="form-label">Оценка За Сочинение </label>
+      <input  id="ОЦЕНКА_ЗА_СОЧИНЕНИЕ" type="number" min=0 max=5 value=0 class="form-control col" >
     </div>
 
     <h4>Баллы ЕГЭ</h4>
 
     <label class="col-2">1 приоритет</label>
     <div class="col-7">
-      <select id="Subject1Priority" class="form-select col-5">
+      <select id="НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ПРЕДМЕТ_1_ПРИОРИТЕТ" class="form-select col-5">
         <option>Английский язык</option>
         <option>Информатика</option>
         <option>Математика</option>
@@ -111,12 +111,12 @@
       </select>
     </div>
     <div class="col-2">
-      <input  id="SubjectGrade1Priority" type="number" min=0 max=100 value=0 class="form-control" >
+      <input  id="НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_1" type="number" min=0 max=100 value=0 class="form-control" >
     </div>
 
     <label class="col-2">2 приоритет</label>
     <div class="col-7">
-      <select id="Subject2Priority" class="form-select col-5">
+      <select id="НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ПРЕДМЕТ_2_ПРИОРИТЕТ" class="form-select col-5">
         <option>Английский язык</option>
         <option>Информатика</option>
         <option>Математика</option>
@@ -127,12 +127,12 @@
       </select>
     </div>
     <div class="col-2">
-      <input  id="SubjectGrade2Priority" type="number" min=0 max=100 value=0 class="form-control" >
+      <input  id="НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_2" type="number" min=0 max=100 value=0 class="form-control" >
     </div>
     
     <label class="col-2">3 приоритет</label>
     <div class="col-7">
-      <select id="Subject3Priority" class="form-select col-5">
+      <select id="НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ПРЕДМЕТ_3_ПРИОРИТЕТ" class="form-select col-5">
         <option>Английский язык</option>
         <option>Информатика</option>
         <option>Математика</option>
@@ -143,15 +143,15 @@
       </select>
     </div>
     <div class="col-2">
-      <input  id="SubjectGrade3Priority" type="number" min=0 max=100 value=0 class="form-control" >
+      <input  id="НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_3" type="number" min=0 max=100 value=0 class="form-control" >
     </div>
 
     <div class="col-2">
-      <label for="SummaryGrade"             class="form-label">Общий балл</label>
+      <label for="НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ"             class="form-label">Общий балл</label>
     </div>
     <div class="col-7"></div>
     <div class="col-2">
-      <input  id="SummaryGrade" type="number" min=0 max=305 value=0 class="form-control col" readonly>
+      <input  id="НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ" type="number" min=0 max=305 value=0 class="form-control col" readonly>
     </div>
 
     <h4>Прочее</h4>
@@ -172,8 +172,8 @@
       </select>
     </div>
     <div class="col-3">
-      <label for="StudentResidenceType" class="form-label">Общежитие</label>
-      <select id="StudentResidenceType" class="form-select">
+      <label for="ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ" class="form-label">Общежитие</label>
+      <select id="ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ" class="form-select">
         <option selected>Не требуется</option>
         <option>Только регистрация</option>
         <option>Требуется</option>
@@ -184,12 +184,18 @@
   </form>
 
   <script>
-    window.addEventListener('load', Init)
+    const API_ENDPOINT = 'http://localhost/api/predict'
+  
+    document.body.onload = Init
 
-    const GradeElements =  ['SubjectGrade1Priority', 'SubjectGrade2Priority', 'SubjectGrade3Priority']
+    const GradeElements =  [
+      'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_1', 
+      'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_2', 
+      'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_3'
+    ]
 
     function Init() {
-      let list = document.querySelectorAll('input')
+      let list = document.querySelectorAll('input,select')
       for (let i of list) {
         i.name = i.id
       }
@@ -204,6 +210,8 @@
           return false
         }
       }
+      
+      form1.onsubmit = onSubmit
     }
 
     function onGradeChange() {
@@ -215,6 +223,48 @@
       }
 
       document.getElementById('SummaryGrade').value = +sum
+    }
+    
+    var log = console.log
+    
+    const exclude = [
+      "Surname",
+      "Name1",
+      "Name2",
+      "Sex",
+      "BirthDate",
+      "ForeignLanguadge",
+      "StudentPreferences",
+      "IsTargetedRecruitment",
+    ]
+    
+    function onSubmit(e) {
+      var formData = new FormData(document.getElementById("form1"))
+      var tobj = {}
+      
+      formData.forEach(function(value, key){
+        if( exclude.indexOf(key) == -1 )
+          tobj[key] = value
+      });
+      var json = {data: tobj}
+      log(json)
+      
+      fetch(API_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(json)
+      })
+        .then( response => response.text())
+        .then( html => 
+          document.body.innerHTML = html     
+        )
+        .catch( e => log(e))
+      
+      e.stopPropagation()      
+      return false
     }
   </script>
 
