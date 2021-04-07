@@ -1,21 +1,19 @@
 import numpy as np
 import pandas as pd
-import os
 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
-from sklearn.feature_selection import RFE
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
-from joblib import dump, load
+from joblib import dump
 
 # Reading the dataset
 
 
-data_start = pd.read_csv('data/etu_dataset/data.csv', sep=',')
-marks = pd.read_csv('data/etu_dataset/avg_marks.csv', sep=',')
+data_start = pd.read_csv('../data/etu_dataset/data.csv', sep=',')
+marks = pd.read_csv('../data/etu_dataset/avg_marks.csv', sep=',')
 
 # Take useful columns
 
@@ -39,7 +37,7 @@ data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] = LabelEncoder().fit_transf
 # Check for duplicates
 
 
-if ((len(marks)) != (len(marks['keyID'].unique()))):
+if (len(marks)) != (len(marks['keyID'].unique())):
     duplicateRows_Labels = marks[marks.duplicated(['keyID'], keep=False)]
     for x in range(len(duplicateRows_Labels)):
         marks.drop(duplicateRows_Labels.index[x], inplace=True)
@@ -62,7 +60,9 @@ course = all_data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'].unique()
 
 for example in course:
     x = all_data.loc[all_data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'] == example]
-    x = x.drop(['НАПРАВЛЕНИЕ_ПОДГОТОВКИ', 'keyID'], axis=1)
+    x = x.drop(['НАПРАВЛЕНИЕ_ПОДГОТОВКИ', 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ_ЕГЭ_С_ОЛИМПИАДОЙ',
+                'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЛИМПИАДА_ЗА_100_БАЛЛОВ', 'keyID'], axis=1)
+
     print('#################################')
     print('INFO:')
     print('Training ', example, ' course..')
@@ -76,17 +76,6 @@ for example in course:
 
     print('Preprocessing data...')
     train_data = sc.fit_transform(train_data)
-
-    # lr=LinearRegression()
-
-    # create the RFE model for the svm classifier 
-    # and select attributes
-    # rfe = RFE(lr, 10)
-    # rfe = rfe.fit(train_data, train_label)
-
-    # print summaries for the selection of attributes
-    # print(rfe.support_)
-    # print(rfe.ranking_)
 
     print('Splitting data for test / train ...')
     train_X, test_X, train_y, test_y = train_test_split(train_data, train_label, test_size=0.1, random_state=1)
@@ -108,7 +97,7 @@ for example in course:
     mae = mean_absolute_error(test_y, y_pred)
     print('Score on test data: mse: %.3f, mae: %.3f' % (mse, mae))
 
-    filename = 'models/' + example + '-model.joblib'
+    filename = '../models/LR_models/' + example + '-model.joblib'
     print('Saving model...')
     dump(model, filename)
     print('END INFO')
