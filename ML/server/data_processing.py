@@ -3,6 +3,19 @@ import os
 import joblib
 from sklearn.preprocessing import StandardScaler
 
+arr_field_names = [
+ 'БАЛЛ_ЗА_ДОСТИЖЕНИЯ',
+ 'БАЛЛ_ОЛИМПИАДЫ_И_КОНКУРСЫ',
+ 'ЕСТЬ_АТТЕСТАТ_С_ОТЛИЧИЕМ',
+ 'ЕСТЬ_ДИПЛОМ_С_ОТЛИЧИЕМ',
+ 'ОЦЕНКА_ЗА_СОЧИНЕНИЕ',
+ 'УРОВЕНЬ_ДИПЛОМА',
+ 'ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ',
+ 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ',
+ 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_1',
+ 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_2',
+ 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_3'
+]
 
 data = np.array([[0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0],
                  [10, 10, 10, 0, 0, 2, 0, 230, 70, 60, 100],
@@ -16,7 +29,7 @@ def preprocessing(data=data):
     return data
 
 
-def predcit_list(data=data, models_dir='../models/LR_models/'):
+def predict_list(data=data, models_dir='../models/LR_models/'):
     #print(data)
     data = preprocessing(data)
     prediction_list = []
