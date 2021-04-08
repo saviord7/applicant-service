@@ -3,3 +3,4 @@
 /ML/venv/
 /ML/data/
 .idea
+*.joblib
