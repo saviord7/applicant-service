@@ -1,4 +1,5 @@
-pandas
-numpy
+pandas==1.2.3
+numpy==1.20.2
 sklearn
-joblib
+joblib==1.0.1
+flask==1.1.2
