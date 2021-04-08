@@ -1,4 +1,5 @@
-/ML/venv/
 *.ppt#
+**/*.pyc
+/ML/venv/
 /ML/data/
 .idea
