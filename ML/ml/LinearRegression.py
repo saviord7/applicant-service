@@ -8,75 +8,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 from joblib import dump
+import  data_loading_and_preprocessing
 
-# Reading the dataset
-
-
-data_start = pd.read_csv('../data/etu_dataset/data.csv', sep=',')
-marks = pd.read_csv('../data/etu_dataset/avg_marks.csv', sep=',')
-
-# Take useful columns
-
-
-data = data_start[[
-      'БАЛЛ_ЗА_ДОСТИЖЕНИЯ',
-      'БАЛЛ_ОЛИМПИАДЫ_И_КОНКУРСЫ',
-      'ЕСТЬ_АТТЕСТАТ_С_ОТЛИЧИЕМ',
-      'ЕСТЬ_ДИПЛОМ_С_ОТЛИЧИЕМ',
-      'ОЦЕНКА_ЗА_СОЧИНЕНИЕ',
-      'УРОВЕНЬ_ДИПЛОМА',
-      'ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ',
-      'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ',
-      'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ_ЕГЭ_С_ОЛИМПИАДОЙ',
-      'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЛИМПИАДА_ЗА_100_БАЛЛОВ',
-      'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_1',
-      'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_2',
-      'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_3',
-      'НАПРАВЛЕНИЕ_ПОДГОТОВКИ',
-      'ИНДИВИДУАЛЬНЫЙ_НОМЕР'
-]]
-
-data = data.rename({'ИНДИВИДУАЛЬНЫЙ_НОМЕР': 'keyID'}, axis=1)
-
-# Preprocessing and encoding
-
-data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'] = data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'].str[:8]
-
-data['УРОВЕНЬ_ДИПЛОМА'] = np.where(data['УРОВЕНЬ_ДИПЛОМА'] == 'Среднее', 0, data['УРОВЕНЬ_ДИПЛОМА'])
-data['УРОВЕНЬ_ДИПЛОМА'] = np.where(data['УРОВЕНЬ_ДИПЛОМА'] == 'Начальное профессиональное',1, data['УРОВЕНЬ_ДИПЛОМА'])
-data['УРОВЕНЬ_ДИПЛОМА'] = np.where(data['УРОВЕНЬ_ДИПЛОМА'] == 'Среднее профессиональное', 2, data['УРОВЕНЬ_ДИПЛОМА'])
-data['УРОВЕНЬ_ДИПЛОМА'] = np.where(data['УРОВЕНЬ_ДИПЛОМА'] == 'Высшее профессиональное', 3, data['УРОВЕНЬ_ДИПЛОМА'])
-
-data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] = np.where(data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] == 'Общежитие', 1, data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'])
-data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] = np.where(data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] == 'Только регистрация', 2, data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'])
-data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] = data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'].replace(np.nan, 0)
-
-
-# Check for duplicates
-
-if (len(marks)) != (len(marks['keyID'].unique())):
-    duplicateRows_Labels = marks[marks.duplicated(['keyID'], keep=False)]
-    for x in range(len(duplicateRows_Labels)):
-        marks.drop(duplicateRows_Labels.index[x], inplace=True)
-
-#  Merge the data
-
-
-all_data = pd.merge(data, marks, on='keyID', right_index=False, sort=False)
-
-# Take data where avg_mark not 0
-
-
-all_data = all_data.loc[all_data['avg_mark'] != 0]
+# Load data prepared data
+data = data_loading_and_preprocessing.make_prepared_data()
 
 # Find unique courses:
-course = all_data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'].unique()
-
-# Split data,  create LR model, train, watch score, save models
+course = data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'].unique()
 
 
 for example in course:
-    x = all_data.loc[all_data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'] == example]
+    x = data.loc[data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'] == example]
     x = x.drop(['НАПРАВЛЕНИЕ_ПОДГОТОВКИ', 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ_ЕГЭ_С_ОЛИМПИАДОЙ',
                 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЛИМПИАДА_ЗА_100_БАЛЛОВ', 'keyID'], axis=1)
 
