@@ -38,15 +38,21 @@ data = data_start[[
 
 data = data.rename({'ИНДИВИДУАЛЬНЫЙ_НОМЕР': 'keyID'}, axis=1)
 
-# Preprocessing
-
+# Preprocessing and encoding
 
 data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'] = data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'].str[:8]
-data['УРОВЕНЬ_ДИПЛОМА'] = LabelEncoder().fit_transform(data['УРОВЕНЬ_ДИПЛОМА'])
-data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] = LabelEncoder().fit_transform(data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'])
+
+data['УРОВЕНЬ_ДИПЛОМА'] = np.where(data['УРОВЕНЬ_ДИПЛОМА'] == 'Среднее', 0, data['УРОВЕНЬ_ДИПЛОМА'])
+data['УРОВЕНЬ_ДИПЛОМА'] = np.where(data['УРОВЕНЬ_ДИПЛОМА'] == 'Начальное профессиональное',1, data['УРОВЕНЬ_ДИПЛОМА'])
+data['УРОВЕНЬ_ДИПЛОМА'] = np.where(data['УРОВЕНЬ_ДИПЛОМА'] == 'Среднее профессиональное', 2, data['УРОВЕНЬ_ДИПЛОМА'])
+data['УРОВЕНЬ_ДИПЛОМА'] = np.where(data['УРОВЕНЬ_ДИПЛОМА'] == 'Высшее профессиональное', 3, data['УРОВЕНЬ_ДИПЛОМА'])
+
+data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] = np.where(data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] == 'Общежитие', 1, data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'])
+data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] = np.where(data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] == 'Только регистрация', 2, data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'])
+data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'] = data['ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ'].replace(np.nan, 0)
+
 
 # Check for duplicates
-
 
 if (len(marks)) != (len(marks['keyID'].unique())):
     duplicateRows_Labels = marks[marks.duplicated(['keyID'], keep=False)]
