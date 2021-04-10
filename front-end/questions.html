@@ -246,24 +246,30 @@
         if( exclude.indexOf(key) == -1 )
           tobj[key] = value
       });
+      
       var json = {data: tobj}
       log(json)
       
+      e.stopPropagation() 
+      
       fetch(API_ENDPOINT, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(json)
       })
-        .then( response => response.text())
-        .then( html => 
-          document.body.innerHTML = html     
+        .then( response => {
+          log(response) 
+          return response.json()
+        })
+        .then( json => 
+          console.log(json)
+          // document.body.innerHTML = html     
         )
         .catch( e => log(e))
       
-      e.stopPropagation()      
+           
       return false
     }
   </script>
