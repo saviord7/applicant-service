@@ -12,6 +12,10 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/', methods=['GET','POST'])
+def index():
+    return 'Hello World'
+
 @app.route('/api/predict', methods=['POST'])
 def predict():
     json = request.get_json(force=True)
@@ -19,8 +23,9 @@ def predict():
     prediction = np.array(data_processing.predict_list(data_raw))
     response = make_response('{"prediction": ' + dumps(prediction.tolist()) + '}')
     response.headers['Content-Type'] = "application/json"
-    print(response.data)
-    return response
+    s_data = response.data
+    print(s_data)
+    return s_data.decode("utf-8")
 
 
 if __name__ == "__main__":
