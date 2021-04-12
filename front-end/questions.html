@@ -186,15 +186,17 @@
   <div id="t_results" hidden>
     <h2 class="text-center">Результаты</h2>
     <table class="table table-sm table-striped table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Код</th>
-        <th scope="col">Специальность</th>
-        <th scope="col">Предп. средняя оценка</th>
-      </tr>
-    </thead>
-    <tbody id=t_results_body>
-    </tbody>
+      <thead>
+        <tr>
+          <th scope="col">Код</th>
+          <th scope="col">Специальность</th>
+          <th scope="col">Предп. средняя оценка</th>
+        </tr>
+      </thead>
+      <tbody id=t_results_body>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" onclick="hideResults()">Назад</button>
   </div>
 
   <script>
@@ -226,6 +228,12 @@
       }
       
       form1.onsubmit = onSubmit
+    }
+    
+    function hideResults() {
+      t_results_body.innerHTML = ''
+      form1.hidden = false
+      t_results.hidden = true
     }
 
     function onGradeChange() {
