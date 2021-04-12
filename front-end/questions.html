@@ -15,8 +15,8 @@
   
 </head>
 <body  class="container">
-  <h2 class="text-center">Анкета поступающего</h2>
   <form id=form1 class="row g-3" method="POST">
+    <h2 class="text-center">Анкета поступающего</h2>
     <!-- <div class="form-text">We'll never share</div> -->
     <h4>Личные данные</h4>
 
@@ -182,6 +182,20 @@
 
     <button type="submit" class="btn btn-primary">Отправить</button>
   </form>
+  
+  <div id="t_results" hidden>
+    <h2 class="text-center">Результаты</h2>
+    <table class="table table-sm table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Код</th>
+        <th scope="col">Специальность</th>
+        <th scope="col">Предп. средняя оценка</th>
+      </tr>
+    </thead>
+    <tbody id=t_results_body>
+    </tbody>
+  </div>
 
   <script>
     const API_ENDPOINT = 'http://localhost:5000/api/predict'
@@ -260,13 +274,24 @@
         body: JSON.stringify(json)
       })
         .then( response => {
-          log(response) 
           return response.json()
         })
-        .then( json => 
+        .then( json => {
           console.log(json)
+          
+          for(i of json.prediction) {
+            t_results_body.innerHTML += `
+            <tr>
+              <td>${i[1]}
+              <td>${trainingDirections[i[1]]}
+              <td>${parseFloat(i[0]).toFixed(2)}
+            `
+          }
+          
+          form1.hidden = true
+          t_results.hidden = false
           // document.body.innerHTML = html     
-        )
+        })
         .catch( e => log(e))
       
            
@@ -274,7 +299,28 @@
     }
     
     const trainingDirections = {
-      
+      "10.05.01": "Компьютерная безопасность",
+      "27.03.02": "Управление качеством",
+      "42.03.01": "Реклама и связи с общественностью",
+      "28.03.01": "Нанотехнологии и микросистемная техника",
+      "45.03.02": "Лингвистика",
+      "12.03.04": "Биотехнические системы и технологии",
+      "38.03.02": "Менеджмент",
+      "27.03.03": "Системный анализ и управление",
+      "09.03.04": "Программная инженерия",
+      "20.03.01": "Техносферная безопасность",
+      "38.03.01": "Экономика",
+      "11.03.02": "Инфокоммуникационные технологии и системы связи",
+      "27.03.04": "Управление в технических системах",
+      "11.03.03": "Конструирование и технология электронных средств",
+      "09.03.02": "Информационные системы и технологии",
+      "13.03.02": "Электроэнергетика и электротехника",
+      "12.03.01": "Приборостроение",
+      "09.03.01": "Информатика и вычислительная техника. Искусственный интеллект",
+      "01.03.02": "Прикладная математика и информатика",
+      "27.03.05": "Инноватика",
+      "11.03.04": "Электроника и наноэлектроника. Оптоэлектроника и фотоника",
+      "11.03.01": "Радиотехника. Интеллектуальные радиотехнические системы"
     }
   </script>
 
