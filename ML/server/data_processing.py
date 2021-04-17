@@ -16,9 +16,9 @@ arr_field_names = [
  'УРОВЕНЬ_ДИПЛОМА',
  'ОБЩЕЖИТИЕ_ТИП_ЗАСЕЛЕНИЯ',
  'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ',
-'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ПРЕДМЕТ_1_ПРИОРИТЕТ',
-'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ПРЕДМЕТ_2_ПРИОРИТЕТ',
-'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ПРЕДМЕТ_3_ПРИОРИТЕТ',
+ 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ПРЕДМЕТ_1_ПРИОРИТЕТ',
+ 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ПРЕДМЕТ_2_ПРИОРИТЕТ',
+ 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ПРЕДМЕТ_3_ПРИОРИТЕТ',
  'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_1',
  'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_2',
  'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЦЕНКА_3'
@@ -51,7 +51,7 @@ def predict_list_FNN(data, models_dir='../models/FNN_models/'):
     for item in all_models:
         model = keras.models.load_model(models_dir + str(item))
         prediction = model.predict(data)
-        #print(prediction)
+        print(prediction)
         prediction = np.append(prediction, item[:8])
         prediction_list.append(prediction)
     prediction_list.sort(key=lambda x: x[0], reverse=True)

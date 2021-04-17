@@ -21,7 +21,7 @@ def index():
 def predict():
     json = request.get_json(force=True)
     data_raw = json['data']
-    prediction = np.array(data_processing.predict_list_LR(data_raw))
+    prediction = np.array(data_processing.predict_list_FNN(data_raw))
     response = make_response('{"prediction": ' + dumps(prediction.tolist()) + '}')
     response.headers['Content-Type'] = "application/json"
     s_data = response.data

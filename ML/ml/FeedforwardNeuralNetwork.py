@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+
+import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras import optimizers
@@ -9,6 +11,33 @@ from sklearn.model_selection import train_test_split
 import data_loading_and_preprocessing
 
 
+
+def compile_model(train_X):
+    # Network
+    model = Sequential()
+    model.add(Dense(22, activation='relu', input_shape=(train_X.shape[1],)))
+    model.add(Dropout(0.2))
+    model.add(Dense(11, activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(22, activation='relu'))
+    model.add(Dropout(0.2))
+
+    model.add(Dense(11, activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(1))
+
+    opt = optimizers.SGD(learning_rate=0.01)
+    # Compile network
+    model.compile(optimizer=opt, loss='mse', metrics=['mae'])
+
+    return model
+
+
+def fit_model(model, train_X, train_y):
+    print('Fitting model...')
+    history = model.fit(train_X, train_y, epochs=7, batch_size=1)
+
+    return  history
 
 # Load data prepared data
 data = data_loading_and_preprocessing.make_prepared_data()
@@ -41,25 +70,8 @@ for example in course:
     train_y = np.array(train_y)
     test_y = np.array(test_y)
 
-    #Network
-    model = Sequential()
-    model.add(Dense(22, activation='relu', input_shape=(train_X.shape[1],)))
-    model.add(Dropout(0.2))
-    model.add(Dense(11, activation='relu'))
-    model.add(Dropout(0.2))
-    model.add(Dense(22, activation='relu'))
-    model.add(Dropout(0.2))
-
-    model.add(Dense(11, activation='relu'))
-    model.add(Dropout(0.2))
-    model.add(Dense(1))
-
-    opt = optimizers.SGD(learning_rate=0.01)
-    #Compile network
-    model.compile(optimizer=opt, loss='mse', metrics=['mae'])
-
-    print('Fitting model...')
-    history = model.fit(train_X, train_y, epochs=7, batch_size=1)
+    model = compile_model(train_X)
+    history = fit_model(model, train_X, train_y)
 
     mse, mae = model.evaluate(test_X, test_y)
     print('MSE on test data : ', mse)
@@ -71,3 +83,5 @@ for example in course:
     print('END INFO')
     print('#################################')
     print()
+
+
