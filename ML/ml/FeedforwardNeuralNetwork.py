@@ -11,11 +11,10 @@ from sklearn.model_selection import train_test_split
 import data_loading_and_preprocessing
 
 
-
 def compile_model(train_X):
     # Network
     model = Sequential()
-    model.add(Dense(22, activation='relu', input_shape=(train_X.shape[1],)))
+    model.add(Dense(22, activation='relu', input_shape=(train_X.shape[1], )))
     model.add(Dropout(0.2))
     model.add(Dense(11, activation='relu'))
     model.add(Dropout(0.2))
@@ -37,7 +36,8 @@ def fit_model(model, train_X, train_y):
     print('Fitting model...')
     history = model.fit(train_X, train_y, epochs=7, batch_size=1)
 
-    return  history
+    return history
+
 
 # Load data prepared data
 data = data_loading_and_preprocessing.make_prepared_data()
@@ -47,8 +47,12 @@ course = data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'].unique()
 
 for example in course:
     x = data.loc[data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'] == example]
-    x = x.drop(['НАПРАВЛЕНИЕ_ПОДГОТОВКИ', 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ_ЕГЭ_С_ОЛИМПИАДОЙ',
-                'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЛИМПИАДА_ЗА_100_БАЛЛОВ', 'keyID'], axis=1)
+    x = x.drop([
+        'НАПРАВЛЕНИЕ_ПОДГОТОВКИ',
+        'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ_ЕГЭ_С_ОЛИМПИАДОЙ',
+        'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЛИМПИАДА_ЗА_100_БАЛЛОВ', 'keyID'
+    ],
+               axis=1)
 
     print('#################################')
     print('INFO:')
@@ -64,7 +68,10 @@ for example in course:
     print('Preprocessing data...')
     train_data = norm.fit_transform(train_data)
 
-    train_X, test_X, train_y, test_y = train_test_split(train_data, train_label, test_size=0.1, random_state=1)
+    train_X, test_X, train_y, test_y = train_test_split(train_data,
+                                                        train_label,
+                                                        test_size=0.1,
+                                                        random_state=1)
 
     print(train_X.shape)
     train_y = np.array(train_y)
@@ -83,5 +90,3 @@ for example in course:
     print('END INFO')
     print('#################################')
     print()
-
-
