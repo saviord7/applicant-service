@@ -118,8 +118,11 @@ def check_data_text(example):
                 check_flag = True
 
     if not check_flag:
-        print('There is not the same text data, the value will be set as 0')
-        numbered_data = 0
+        if example == 'on':
+            numbered_data = 1
+        else:
+            print('There is not the same text data, the value will be set as 0')
+            numbered_data = 0
 
     print('Your text data: ', example)
     print('Your numbered data: ', numbered_data)
@@ -142,3 +145,8 @@ def preprocessing(data_row):
     data = np.array([data])
     print(data)
     return data
+
+
+x = preprocessing(data_row)
+
+print(x)
