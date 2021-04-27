@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 from joblib import dump
-import  data_loading_and_preprocessing
+import data_loading_and_preprocessing
 
 # Load data prepared data
 data = data_loading_and_preprocessing.make_prepared_data()
@@ -16,11 +16,14 @@ data = data_loading_and_preprocessing.make_prepared_data()
 # Find unique courses:
 course = data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'].unique()
 
-
 for example in course:
     x = data.loc[data['НАПРАВЛЕНИЕ_ПОДГОТОВКИ'] == example]
-    x = x.drop(['НАПРАВЛЕНИЕ_ПОДГОТОВКИ', 'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ_ЕГЭ_С_ОЛИМПИАДОЙ',
-                'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЛИМПИАДА_ЗА_100_БАЛЛОВ', 'keyID'], axis=1)
+    x = x.drop([
+        'НАПРАВЛЕНИЕ_ПОДГОТОВКИ',
+        'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_БАЛЛ_ЕГЭ_С_ОЛИМПИАДОЙ',
+        'НАПРАВЛЕНИЕ_В_ПРИКАЗЕ_ОЛИМПИАДА_ЗА_100_БАЛЛОВ', 'keyID'
+    ],
+               axis=1)
 
     print('#################################')
     print('INFO:')
@@ -33,11 +36,13 @@ for example in course:
     train_label = x['avg_mark']
 
     print('Spliting data for test / train ...')
-    train_X, test_X, train_y, test_y = train_test_split(train_data, train_label, test_size=0.05, random_state=1)
+    train_X, test_X, train_y, test_y = train_test_split(train_data,
+                                                        train_label,
+                                                        test_size=0.05,
+                                                        random_state=1)
 
     train_y = np.array(train_y)
     test_y = np.array(test_y)
-
 
     print('Fitting model...')
     model.fit(train_X, train_y)
