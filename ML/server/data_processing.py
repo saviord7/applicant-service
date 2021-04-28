@@ -98,7 +98,7 @@ def check_data_text(example):
         'Среднее профессиональное': 2,
         'Высшее профессиональное': 3
     }
-    loc_student = {'Не требуется': 0, 'Общежитие': 1, 'Только регистрация': 2}
+    loc_student = {'Не требуется': 0, 'Требуется': 1, 'Только регистрация': 2}
 
     for key in subject:
         if key == example:
@@ -146,7 +146,3 @@ def preprocessing(data_row):
     print(data)
     return data
 
-
-x = preprocessing(data_row)
-
-print(x)
