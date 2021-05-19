@@ -95,6 +95,7 @@ def merging(dataFame1, dataFrame2, key='keyID'):
                         on=key,
                         right_index=False,
                         sort=False)
+    all_data = all_data.loc[all_data['avg_mark'] > 2.9]
     all_data = all_data.loc[all_data['avg_mark'] != 0]
 
     return all_data
